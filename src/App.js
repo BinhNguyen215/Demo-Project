@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import { Route, Routes, useLocation } from "react-router-dom";
+import Home from "./Pages/Home/Index";
+import Events from "./Pages/Events/Index";
+import { Provider } from "react-redux";
+import store from "./Redux/Store";
 function App() {
+  const location = useLocation();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello React.
-        </p>
-        <a
-          className="App-link"
-          href="https://www.facebook.com/profile.php?id=100013033413902"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          facebook
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <>
+          <Routes key={location.pathname} location={location}>
+            <Route path="/" element={<Home />} />
+            <Route path="Events" element={<Events />} />
+          </Routes>
+        </>
+      </div>
+    </Provider>
   );
 }
-
 export default App;
