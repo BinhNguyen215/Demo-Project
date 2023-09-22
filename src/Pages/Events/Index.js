@@ -2,13 +2,17 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setInformation } from "../../Redux/Actions";
-const Contact = () => {
-  const [infor, setInfor] = useState("");
-  const [date, setDate] = useState("");
+const Events = () => {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [startTime, setStatrtTime] = useState("");
+  const [endTime, setEndTime] = useState("");
   const dispatch = useDispatch();
   const infors = useSelector((state) => state.infors);
   console.log(infors);
-    dispatch(setInformation({ id: Math.random(), data: infor, time: date }));
+  const handleSetInfor = () => {
+    dispatch(setInformation({ id: Math.random(), Name: name, Description: description, StartTime: startTime, EndTime: endTime }));
+  };
   return (
     <div>
       <div>
@@ -19,32 +23,34 @@ const Contact = () => {
          </Link>
       </div>
       <input
-        value={infor}
+        value={name}
         placeholder="Enter event name"
-        onChange={(event) => {
-          setInfor(event.target.value);
+        onChange={(e) => {
+          setName(e.target.value);
         }}
       />
       <input
-        value={infor}
+        value={description}
         placeholder="Enter description"
-        onChange={(event) => {
-          setInfor(event.target.value);
+        onChange={(e) => {
+          setDescription(e.target.value);
         }}
       />
       <input
         type="time"
         onChange={(e) => {
-          setDate(e.target.value);
+          setStatrtTime(e.target.value);
         }}
       />
       <input
         type="time"
         onChange={(e) => {
-          setDate(e.target.value);
+          setEndTime(e.target.value);
         }}
+
       />
+      <button onClick={() => handleSetInfor()}>Submit</button>
     </div>
   );
 };
-export default Contact;
+export default Events;
