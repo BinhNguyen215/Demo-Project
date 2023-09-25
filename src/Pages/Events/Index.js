@@ -1,56 +1,97 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useForm, Controller } from "react-hook-form";
 import { setInformation } from "../../Redux/Actions";
+import "./Events.css";
+
 const Events = () => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [startTime, setStatrtTime] = useState("");
-  const [endTime, setEndTime] = useState("");
+  const { handleSubmit, control } = useForm();
   const dispatch = useDispatch();
-  const infors = useSelector((state) => state.infors);
-  console.log(infors);
-  const handleSetInfor = () => {
-    dispatch(setInformation({ id: Math.random(), Name: name, Description: description, StartTime: startTime, EndTime: endTime }));
+
+  const onSubmit = (data) => {
+    dispatch(
+      setInformation({
+        id: Math.random(),
+        Name: data.name,
+        Description: data.description,
+        StartTime: data.startTime,
+        EndTime: data.endTime,
+      })
+    );
   };
+
   return (
     <div>
       <div>
-         This is Events Page
-         <br></br>
-         <Link to="/">
-            <button>Link to Home</button>
-         </Link>
+        <div className="card">
+          <h2 className="card-title">Events Page</h2>
+          <div className="card-content">
+              This is Events Page
+              <br></br>
+          <Link to="/">
+              <button className="card-button">Link to Home</button>
+          </Link>
+          </div>
+        </div>
       </div>
-      <input
-        value={name}
-        placeholder="Enter event name"
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-      />
-      <input
-        value={description}
-        placeholder="Enter description"
-        onChange={(e) => {
-          setDescription(e.target.value);
-        }}
-      />
-      <input
-        type="time"
-        onChange={(e) => {
-          setStatrtTime(e.target.value);
-        }}
-      />
-      <input
-        type="time"
-        onChange={(e) => {
-          setEndTime(e.target.value);
-        }}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Controller
+          className="card-input"
+          name="name"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <input
+              {...field}
+              placeholder="Enter event name"
+            />
+          )}
+        />
 
-      />
-      <button onClick={() => handleSetInfor()}>Submit</button>
+        <Controller
+          className="card-input"
+          name="description"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <input
+              {...field}
+              placeholder="Enter description"
+            />
+          )}
+        />
+
+        <Controller
+          className="card-input"
+          name="startTime"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <input
+              {...field}
+              type="time"
+            />
+          )}
+        />
+
+        <Controller
+          className="card-input"
+          name="endTime"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <input
+              {...field}
+              type="time"
+            />
+          )}
+        />
+
+        <button className="card-button" type="submit">Submit</button>
+      </form>
     </div>
   );
 };
+
 export default Events;

@@ -1,0 +1,67 @@
+.card {
+  width: 500px;
+  background-color: #31d1b4;
+  border: 1px solid #0f0f0f;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-content {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.card-input {
+  width: 150%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.card-button {
+  background-color: #007bff;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  @media only screen and (max-width: 786px) {
+    form {
+      max-width: 100%;
+    }
+    .input {
+      width: 100%;
+    }
+    .card {
+      width: 100%;
+    }
+    .card-title{
+      width: 100%;
+    }
+    .card-content{
+      width: 100%;
+    }
+    .card-input {
+      width: 100%;
+    }
+    .card-button{
+      width: 100%;
+    }
+  }
+
+  

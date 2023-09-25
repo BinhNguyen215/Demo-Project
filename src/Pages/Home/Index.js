@@ -1,23 +1,40 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import "./Home.css";
+
 const Home = () => {
   const infors = useSelector((state) => state.infors);
-  console.log(infors);
+
   return (
     <div>
-      <div> This is Home Page</div>
-      <Link to="Events">
-        <button>Link to Events</button>
-      </Link>
-      {infors.map((infor) => {
-        return (
-          <div key={infor.id}>
-            Name: {infor.Name}, Description: {infor.Description}, Start: {infor.StartTime}; End: {infor.EndTime}
+      <div className="card">
+        <h2 className="card-title">Events Page</h2>  
+        <div className="card-content">  This is Home Page</div>
+        <Link to="Events">
+          <button className="card-button">Link to Home</button>
+        </Link>
+      </div>
+      <div className="event-list">
+        {infors.map((infor) => (
+          <div key={infor.id} className="event-item">
+            <div>
+              Name: {infor.Name}
+            </div>
+            <div>
+              Description: {infor.Description}
+            </div>
+            <div>
+              Start: {infor.StartTime}
+            </div>
+            <div>
+              End: {infor.EndTime}
+            </div>
           </div>
-        );
-      })}
+        ))}
+      </div>
     </div>
   );
 };
+
 export default Home;
